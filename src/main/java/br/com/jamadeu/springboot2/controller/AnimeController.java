@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jamadeu.springboot2.domain.Anime;
@@ -33,6 +34,11 @@ public class AnimeController {
   @GetMapping(path = "/{id}")
   public ResponseEntity<Anime> findById(@PathVariable long id) {
     return new ResponseEntity<>(animeService.findByIdOrThrowBadRequestException(id), HttpStatus.OK);
+  }
+
+  @GetMapping(path = "/find")
+  public ResponseEntity<List<Anime>> findByName(@RequestParam String name) {
+    return new ResponseEntity<>(animeService.findByName(name), HttpStatus.OK);
   }
 
   @PostMapping
