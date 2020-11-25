@@ -1,4 +1,4 @@
-package br.com.jamadeu.springboot2.services;
+package br.com.jamadeu.springboot2.service;
 
 import java.util.List;
 
