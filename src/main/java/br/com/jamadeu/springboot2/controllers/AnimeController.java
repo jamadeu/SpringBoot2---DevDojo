@@ -7,15 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jamadeu.springboot2.domain.Anime;
+import br.com.jamadeu.springboot2.services.AnimeService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("anime")
+@RequestMapping("animes")
 @RequiredArgsConstructor
 public class AnimeController {
+  private final AnimeService animeService;
 
   @GetMapping
   public List<Anime> list() {
-    return List.of(new Anime("BDZ"), new Anime("Berserk"));
+    return animeService.listAll();
   }
 }
