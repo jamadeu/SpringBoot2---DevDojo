@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jamadeu.springboot2.domain.Anime;
+import br.com.jamadeu.springboot2.requests.NewAnimeRequest;
+import br.com.jamadeu.springboot2.requests.ReplaceAnimeRequest;
 import br.com.jamadeu.springboot2.service.AnimeService;
 import lombok.RequiredArgsConstructor;
 
@@ -30,12 +32,12 @@ public class AnimeController {
 
   @GetMapping(path = "/{id}")
   public ResponseEntity<Anime> findById(@PathVariable long id) {
-    return new ResponseEntity<>(animeService.findById(id), HttpStatus.OK);
+    return new ResponseEntity<>(animeService.findByIdOrThrowBadRequestException(id), HttpStatus.OK);
   }
 
   @PostMapping
-  public ResponseEntity<Anime> save(@RequestBody Anime anime) {
-    return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
+  public ResponseEntity<Anime> save(@RequestBody NewAnimeRequest newAnimeRequest) {
+    return new ResponseEntity<>(animeService.save(newAnimeRequest), HttpStatus.CREATED);
   }
 
   @DeleteMapping(path = "/{id}")
@@ -45,8 +47,8 @@ public class AnimeController {
   }
 
   @PutMapping
-  public ResponseEntity<Anime> replace(@RequestBody Anime anime) {
-    animeService.replace(anime);
+  public ResponseEntity<Anime> replace(@RequestBody ReplaceAnimeRequest replaceAnimeRequest) {
+    animeService.replace(replaceAnimeRequest);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 }
