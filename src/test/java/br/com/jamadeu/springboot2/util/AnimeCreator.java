@@ -4,20 +4,20 @@ import br.com.jamadeu.springboot2.domain.Anime;
 
 public class AnimeCreator {
 
-    private Anime createAnimeToBeSaved() {
+    public static Anime createAnimeToBeSaved() {
         return Anime.builder()
                 .name("Hellsing")
                 .build();
     }
 
-    private Anime createValidAnime() {
+    public static Anime createValidAnime() {
         return Anime.builder()
                 .id(1L)
                 .name("Hellsing")
                 .build();
     }
 
-    private Anime createValidUpdatedAnime() {
+    public static Anime createValidUpdatedAnime() {
         return Anime.builder()
                 .id(1L)
                 .name("Hellsing 2")
