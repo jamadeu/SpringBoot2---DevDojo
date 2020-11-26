@@ -5,6 +5,8 @@ import br.com.jamadeu.springboot2.requests.NewAnimeRequest;
 import br.com.jamadeu.springboot2.requests.ReplaceAnimeRequest;
 import br.com.jamadeu.springboot2.service.AnimeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +21,8 @@ public class AnimeController {
     private final AnimeService animeService;
 
     @GetMapping
-    public ResponseEntity<List<Anime>> list() {
-        return new ResponseEntity<>(animeService.listAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Anime>> list(Pageable pageable) {
+        return new ResponseEntity<>(animeService.listAll(pageable), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")
