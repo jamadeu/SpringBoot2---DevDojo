@@ -2,6 +2,8 @@ package br.com.jamadeu.springboot2.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,7 +44,7 @@ public class AnimeController {
   }
 
   @PostMapping
-  public ResponseEntity<Anime> save(@RequestBody NewAnimeRequest newAnimeRequest) {
+  public ResponseEntity<Anime> save(@RequestBody @Valid NewAnimeRequest newAnimeRequest) {
     return new ResponseEntity<>(animeService.save(newAnimeRequest), HttpStatus.CREATED);
   }
 
@@ -53,7 +55,7 @@ public class AnimeController {
   }
 
   @PutMapping
-  public ResponseEntity<Anime> replace(@RequestBody ReplaceAnimeRequest replaceAnimeRequest) {
+  public ResponseEntity<Anime> replace(@RequestBody @Valid ReplaceAnimeRequest replaceAnimeRequest) {
     animeService.replace(replaceAnimeRequest);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
