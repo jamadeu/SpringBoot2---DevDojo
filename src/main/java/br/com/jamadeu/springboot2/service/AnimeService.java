@@ -17,34 +17,34 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AnimeService {
 
-  private final AnimeRepository animeRepository;
+    private final AnimeRepository animeRepository;
 
-  public List<Anime> listAll() {
-    return animeRepository.findAll();
-  }
+    public List<Anime> listAll() {
+        return animeRepository.findAll();
+    }
 
-  public List<Anime> findByName(String name) {
-    return animeRepository.findByName(name);
-  }
+    public List<Anime> findByName(String name) {
+        return animeRepository.findByName(name);
+    }
 
-  public Anime findByIdOrThrowBadRequestException(long id) {
-    return animeRepository.findById(id).orElseThrow(() -> new BadRequestException("Anime not found"));
-  }
+    public Anime findByIdOrThrowBadRequestException(long id) {
+        return animeRepository.findById(id).orElseThrow(() -> new BadRequestException("Anime not found"));
+    }
 
-  @Transactional
-  public Anime save(NewAnimeRequest newAnimeRequest) {
-    return animeRepository.save(AnimeMapper.INSTANCE.toAnime(newAnimeRequest));
-  }
+    @Transactional
+    public Anime save(NewAnimeRequest newAnimeRequest) {
+        return animeRepository.save(AnimeMapper.INSTANCE.toAnime(newAnimeRequest));
+    }
 
-  public void delete(long id) {
-    animeRepository.delete(findByIdOrThrowBadRequestException(id));
-  }
+    public void delete(long id) {
+        animeRepository.delete(findByIdOrThrowBadRequestException(id));
+    }
 
-  @Transactional
-  public void replace(ReplaceAnimeRequest replaceAnimeRequest) {
-    Anime savedAnime = findByIdOrThrowBadRequestException(replaceAnimeRequest.getId());
-    Anime anime = AnimeMapper.INSTANCE.toAnime(replaceAnimeRequest);
-    anime.setId(savedAnime.getId());
-    animeRepository.save(anime);
-  }
+    @Transactional
+    public void replace(ReplaceAnimeRequest replaceAnimeRequest) {
+        Anime savedAnime = findByIdOrThrowBadRequestException(replaceAnimeRequest.getId());
+        Anime anime = AnimeMapper.INSTANCE.toAnime(replaceAnimeRequest);
+        anime.setId(savedAnime.getId());
+        animeRepository.save(anime);
+    }
 }

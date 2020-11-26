@@ -9,10 +9,10 @@ import lombok.Data;
 
 @Data
 public class ReplaceAnimeRequest {
-  @Positive(message = "The anime id cannot be zero or negative")
-  @DecimalMin(value = "1", message = "The anime id must be a long")
-  @NotNull(message = "The anime id cannot be null")
-  private Long id;
-  @NotEmpty(message = "The anime name cannot be empty")
-  private String name;
+    @Positive(message = "The anime id cannot be zero or negative")
+    @DecimalMin(value = "1", message = "The anime id must be a long")
+    @NotNull(message = "The anime id cannot be null")
+    private Long id;
+    @NotEmpty(message = "The anime name cannot be empty")
+    private String name;
 }

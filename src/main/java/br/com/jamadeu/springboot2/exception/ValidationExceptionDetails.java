@@ -10,6 +10,6 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @ToString
 public class ValidationExceptionDetails extends ExceptionDetails {
-  private final String fields;
-  private final String fieldsMessage;
+    private final String fields;
+    private final String fieldsMessage;
 }

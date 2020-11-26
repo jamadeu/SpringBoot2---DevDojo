@@ -9,5 +9,5 @@ import br.com.jamadeu.springboot2.domain.Anime;
 
 @Repository
 public interface AnimeRepository extends JpaRepository<Anime, Long> {
-  List<Anime> findByName(String name);
+    List<Anime> findByName(String name);
 }

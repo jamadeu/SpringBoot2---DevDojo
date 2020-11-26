@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "animes")
 public class Anime {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
 }

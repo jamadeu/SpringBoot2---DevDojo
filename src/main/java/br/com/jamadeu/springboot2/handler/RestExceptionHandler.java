@@ -23,41 +23,41 @@ import br.com.jamadeu.springboot2.exception.ValidationExceptionDetails;
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-  @ExceptionHandler(BadRequestException.class)
-  public ResponseEntity<BadRequestExceptionDetails> handleBadRequestException(BadRequestException exception) {
-    return new ResponseEntity<>(BadRequestExceptionDetails.builder()
-        .timestamp(LocalDateTime.now())
-        .status(HttpStatus.BAD_REQUEST.value())
-        .title("Bad Request Exception")
-        .details(exception.getMessage())
-        .developerMessage(exception.getClass().getName())
-        .build(), HttpStatus.BAD_REQUEST);
-  }
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<BadRequestExceptionDetails> handleBadRequestException(BadRequestException exception) {
+        return new ResponseEntity<>(BadRequestExceptionDetails.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .title("Bad Request Exception")
+                .details(exception.getMessage())
+                .developerMessage(exception.getClass().getName())
+                .build(), HttpStatus.BAD_REQUEST);
+    }
 
-  @Override
-  protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception,
-      HttpHeaders headers, HttpStatus status, WebRequest request) {
-    List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-    String fields = fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(", "));
-    String fieldsmessage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception,
+                                                                  HttpHeaders headers, HttpStatus status, WebRequest request) {
+        List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
+        String fields = fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(", "));
+        String fieldsmessage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
 
-    return new ResponseEntity<>(ValidationExceptionDetails.builder()
-        .timestamp(LocalDateTime.now())
-        .status(HttpStatus.BAD_REQUEST.value())
-        .title("Bad Request Exception")
-        .details("Check field(s) error(s)")
-        .developerMessage(exception.getClass().getName())
-        .fields(fields).fieldsMessage(fieldsmessage)
-        .build(), HttpStatus.BAD_REQUEST);
-  }
+        return new ResponseEntity<>(ValidationExceptionDetails.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .title("Bad Request Exception")
+                .details("Check field(s) error(s)")
+                .developerMessage(exception.getClass().getName())
+                .fields(fields).fieldsMessage(fieldsmessage)
+                .build(), HttpStatus.BAD_REQUEST);
+    }
 
-  @Override
-  protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers,
-      HttpStatus status, WebRequest request) {
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers,
+                                                             HttpStatus status, WebRequest request) {
 
-    ExceptionDetails exceptionDetails = ExceptionDetails.builder().timestamp(LocalDateTime.now()).status(status.value())
-        .title(ex.getCause().getMessage()).details(ex.getMessage()).developerMessage(ex.getClass().getName()).build();
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder().timestamp(LocalDateTime.now()).status(status.value())
+                .title(ex.getCause().getMessage()).details(ex.getMessage()).developerMessage(ex.getClass().getName()).build();
 
-    return new ResponseEntity<>(exceptionDetails, headers, status);
-  }
+        return new ResponseEntity<>(exceptionDetails, headers, status);
+    }
 }

@@ -9,9 +9,9 @@ import br.com.jamadeu.springboot2.requests.ReplaceAnimeRequest;
 
 @Mapper(componentModel = "spring")
 public abstract class AnimeMapper {
-  public static final AnimeMapper INSTANCE = Mappers.getMapper(AnimeMapper.class);
+    public static final AnimeMapper INSTANCE = Mappers.getMapper(AnimeMapper.class);
 
-  public abstract Anime toAnime(NewAnimeRequest newAnimeRequest);
+    public abstract Anime toAnime(NewAnimeRequest newAnimeRequest);
 
-  public abstract Anime toAnime(ReplaceAnimeRequest replaceAnimeRequest);
+    public abstract Anime toAnime(ReplaceAnimeRequest replaceAnimeRequest);
 }
