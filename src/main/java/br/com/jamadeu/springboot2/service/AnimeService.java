@@ -2,11 +2,10 @@ package br.com.jamadeu.springboot2.service;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import br.com.jamadeu.springboot2.domain.Anime;
+import br.com.jamadeu.springboot2.exception.BadRequestException;
 import br.com.jamadeu.springboot2.mapper.AnimeMapper;
 import br.com.jamadeu.springboot2.repository.AnimeRepository;
 import br.com.jamadeu.springboot2.requests.NewAnimeRequest;
@@ -28,8 +27,7 @@ public class AnimeService {
   }
 
   public Anime findByIdOrThrowBadRequestException(long id) {
-    return animeRepository.findById(id)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not found"));
+    return animeRepository.findById(id).orElseThrow(() -> new BadRequestException("Anime not found"));
   }
 
   public Anime save(NewAnimeRequest newAnimeRequest) {
