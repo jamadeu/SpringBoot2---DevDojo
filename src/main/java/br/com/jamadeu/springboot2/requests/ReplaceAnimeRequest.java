@@ -5,9 +5,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class ReplaceAnimeRequest {
     @Positive(message = "The anime id cannot be zero or negative")
     @DecimalMin(value = "1", message = "The anime id must be a long")
