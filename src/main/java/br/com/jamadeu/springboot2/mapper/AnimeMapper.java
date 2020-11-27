@@ -10,11 +10,8 @@ import org.mapstruct.factory.Mappers;
 public abstract class AnimeMapper {
     public static final AnimeMapper INSTANCE = Mappers.getMapper(AnimeMapper.class);
 
-    public Anime toAnime(NewAnimeRequest newAnimeRequest) {
-        Anime anime = new Anime();
-        anime.setName(newAnimeRequest.getName());
-        return anime;
-    }
+    public abstract Anime toAnime(NewAnimeRequest newAnimeRequest);
 
     public abstract Anime toAnime(ReplaceAnimeRequest replaceAnimeRequest);
+    //Don't work
 }

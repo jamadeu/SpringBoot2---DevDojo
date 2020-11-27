@@ -51,7 +51,7 @@ public class AnimeController {
         return new ResponseEntity<>(animeService.findByName(name), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/admin")
+    @PostMapping
     public ResponseEntity<Anime> save(@RequestBody @Valid NewAnimeRequest newAnimeRequest) {
         return new ResponseEntity<>(animeService.save(newAnimeRequest), HttpStatus.CREATED);
     }
