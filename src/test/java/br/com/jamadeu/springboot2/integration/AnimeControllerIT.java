@@ -125,8 +125,8 @@ class AnimeControllerIT {
     void replace_UpdatesAnime_WhenSuccessful() {
         Anime savedAnime = animeRepository.save(AnimeCreator.createAnimeToBeSaved());
         savedAnime.setName("new name");
-        ResponseEntity<Void> animeResponseEntity = testRestTemplate.exchange("/animes", HttpMethod.PUT,
-                new HttpEntity<>(savedAnime), Void.class);
+        ResponseEntity<Void> animeResponseEntity = testRestTemplate.exchange("/animes",
+                HttpMethod.PUT, new HttpEntity<>(savedAnime), Void.class);
 
         Assertions.assertThat(animeResponseEntity).isNotNull();
         Assertions.assertThat(animeResponseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
