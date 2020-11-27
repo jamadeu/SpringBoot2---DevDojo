@@ -21,6 +21,8 @@
         <lombok.version>1.18.16</lombok.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <springdoc-openapi-ui.version>1.5.0</springdoc-openapi-ui.version>
+        <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
+        <docker.distroless.image>gcr.io/distroless/java:11</docker.distroless.image>
     </properties>
 
     <dependencies>
@@ -118,6 +120,25 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>${jib-maven-plugin.version}</version>
+                <configuration>
+                    <from>
+                        <image>${docker.distroless.image}</image>
+                    </from>
+                    <to>
+                        <image>springboot2</image>
+                        <tags>
+                            <tag>${project.version}</tag>
+                        </tags>
+                    </to>
+                    <container>
+                        <mainClass>br.com.jamadeu.springboot2.Springboot2EssentialsApplication</mainClass>
+                    </container>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
