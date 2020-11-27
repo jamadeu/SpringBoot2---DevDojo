@@ -1,17 +1,12 @@
 package br.com.jamadeu.springboot2.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.FieldNameConstants;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @AllArgsConstructor
