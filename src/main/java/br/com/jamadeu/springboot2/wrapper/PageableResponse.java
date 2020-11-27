@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
-
-import java.util.List;
-
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.domain.PageImpl;
@@ -14,14 +12,16 @@ import org.springframework.data.domain.PageRequest;
 
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = false)
 public class PageableResponse<T> extends PageImpl<T> {
+
     private boolean first;
     private boolean last;
     private int totalPages;
     private int numberOfElements;
 
     @JsonCreator(mode = Mode.PROPERTIES)
-    public PageableResponse(@JsonProperty("content") List<T> content,
+    public PageableResponse(@JsonProperty("content") java.util.List<T> content,
                             @JsonProperty("number") int number,
                             @JsonProperty("size") int size,
                             @JsonProperty("totalElements") int totalElements,

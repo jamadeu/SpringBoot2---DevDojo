@@ -25,7 +25,7 @@ public class AnimeController {
         return new ResponseEntity<>(animeService.listAll(pageable), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping(path = "/all")
     public ResponseEntity<List<Anime>> listAll() {
         return new ResponseEntity<>(animeService.listAllNonPageable(), HttpStatus.OK);
     }
