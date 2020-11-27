@@ -3,6 +3,7 @@ package br.com.jamadeu.springboot2.requests;
 import br.com.jamadeu.springboot2.domain.Anime;
 import br.com.jamadeu.springboot2.exception.BadRequestException;
 import br.com.jamadeu.springboot2.repository.AnimeRepository;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,8 +24,10 @@ public class ReplaceAnimeRequest {
     @Positive(message = "The anime id cannot be zero or negative")
     @DecimalMin(value = "1", message = "The anime id must be a long")
     @NotNull(message = "The anime id cannot be null")
+    @Schema(description = "This is the anime's ud", required = true)
     private Long id;
     @NotEmpty(message = "The anime name cannot be empty")
+    @Schema(description = "This is the anime's name", example = "Bleach", required = true)
     private String name;
 
 
