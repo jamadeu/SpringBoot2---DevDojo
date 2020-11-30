@@ -13,5 +13,5 @@ public abstract class AnimeMapper {
     public abstract Anime toAnime(NewAnimeRequest newAnimeRequest);
 
     public abstract Anime toAnime(ReplaceAnimeRequest replaceAnimeRequest);
-    //Don't work
+    //Does not work in Intellij Community
 }
