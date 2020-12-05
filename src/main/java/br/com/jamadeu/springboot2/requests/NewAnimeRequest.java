@@ -19,8 +19,8 @@ public class NewAnimeRequest {
     private String name;
 
     public Anime toAnime() {
-        Anime anime = new Anime();
-        anime.setName(this.name);
-        return anime;
+        return Anime.builder()
+                .name(name)
+                .build();
     }
 }

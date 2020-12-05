@@ -2,6 +2,7 @@ package br.com.jamadeu.springboot2.service;
 
 import br.com.jamadeu.springboot2.domain.Anime;
 import br.com.jamadeu.springboot2.exception.BadRequestException;
+import br.com.jamadeu.springboot2.mapper.AnimeMapper;
 import br.com.jamadeu.springboot2.repository.AnimeRepository;
 import br.com.jamadeu.springboot2.requests.NewAnimeRequest;
 import br.com.jamadeu.springboot2.requests.ReplaceAnimeRequest;
@@ -37,7 +38,8 @@ public class AnimeService {
 
     @Transactional
     public Anime save(NewAnimeRequest newAnimeRequest) {
-        return animeRepository.save(newAnimeRequest.toAnime());
+
+        return animeRepository.save(AnimeMapper.INSTANCE.toAnime(newAnimeRequest));
     }
 
     public void delete(long id) {
